@@ -162,7 +162,6 @@ const PortfolioContent: React.FC = () => {
         }} />
       </div>
 
-      <ThemeToggle />
       <Navigation />
 
       {/* Hero/Summary Section - Updated with proper mobile spacing */}
