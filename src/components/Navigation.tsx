@@ -1,10 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('summary');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +29,6 @@ const Navigation: React.FC = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
     }
   };
 
@@ -39,7 +36,7 @@ const Navigation: React.FC = () => {
     { id: 'summary', label: 'Home' },
     { id: 'experience', label: 'Work' },
     { id: 'about', label: 'About' },
-    { id: 'blog', label: 'Blog' }
+    { id: 'blog', label: 'Blogs' }
   ];
 
   return (
@@ -66,43 +63,26 @@ const Navigation: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
-      <nav className="md:hidden fixed top-4 left-4 right-4 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="text-lg font-semibold text-gray-900 dark:text-white">
-            Menu
-          </div>
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus-visible:ring-enhanced"
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-            )}
-          </button>
+      {/* Mobile Navigation - 4 Button Layout */}
+      <nav className="md:hidden fixed top-4 left-4 right-20 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+        <div className="flex justify-between px-2 py-2">
+          {navigationItems.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className={`relative px-2 py-2 rounded-xl text-xs font-medium transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:ring-enhanced ${
+                activeSection === id
+                  ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
+              }`}
+            >
+              {label}
+              {activeSection === id && (
+                <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/30 rounded-xl -z-10 animate-scale-in" />
+              )}
+            </button>
+          ))}
         </div>
-        
-        {/* Mobile Menu Items */}
-        {isMobileMenuOpen && (
-          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2 animate-fade-in">
-            {navigationItems.map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 focus-visible:ring-enhanced ${
-                  activeSection === id
-                    ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
       </nav>
     </>
   );
