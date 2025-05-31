@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { 
@@ -91,14 +92,12 @@ const Index: React.FC = () => {
     };
   }, []);
 
-  const { data: repos, isLoading, error } = useQuery<GitHubRepo[]>(
-    ['githubRepos'],
-    () => fetchData<GitHubRepo[]>('https://api.github.com/users/leovergarajr/repos?sort=stars&direction=desc'),
-    {
-      refetchOnWindowFocus: false,
-      retry: 3,
-    }
-  );
+  const { data: repos, isLoading, error } = useQuery({
+    queryKey: ['githubRepos'],
+    queryFn: () => fetchData<GitHubRepo[]>('https://api.github.com/users/leovergarajr/repos?sort=stars&direction=desc'),
+    refetchOnWindowFocus: false,
+    retry: 3,
+  });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -152,14 +151,14 @@ const Index: React.FC = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section id="summary" className="relative py-24 md:py-32 lg:py-40">
+      <section id="summary" className="relative py-24 md:py-32 lg:py-40 pt-32 md:pt-40">
         <div className="container mx-auto px-4">
           <div className="lg:flex items-center justify-between">
             <div className="lg:w-1/2 mb-8 lg:mb-0">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 dark:text-white mb-4">
                 Hi, I'm Leo! 👋
               </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-6">
                 A passionate software engineer dedicated to crafting efficient and user-friendly solutions.
                 Explore my portfolio to see how I can bring value to your projects.
               </p>
