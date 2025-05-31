@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('summary');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +47,7 @@ const Navigation: React.FC = () => {
     <>
       {/* Desktop Navigation */}
       <nav className="hidden md:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-        <div className="flex space-x-8">
+        <div className="flex items-center space-x-8">
           {navigationItems.map(({ id, label }) => (
             <button
               key={id}
@@ -63,6 +64,19 @@ const Navigation: React.FC = () => {
               )}
             </button>
           ))}
+          
+          {/* Desktop Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-200 focus-visible:ring-enhanced"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? (
+              <Moon className="w-5 h-5" />
+            ) : (
+              <Sun className="w-5 h-5" />
+            )}
+          </button>
         </div>
       </nav>
 
@@ -101,6 +115,24 @@ const Navigation: React.FC = () => {
                 {label}
               </button>
             ))}
+            
+            {/* Mobile Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="w-full text-left px-4 py-3 rounded-xl text-base font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200 transition-all duration-200 focus-visible:ring-enhanced flex items-center"
+            >
+              {theme === 'light' ? (
+                <>
+                  <Moon className="w-5 h-5 mr-2" />
+                  Dark Mode
+                </>
+              ) : (
+                <>
+                  <Sun className="w-5 h-5 mr-2" />
+                  Light Mode
+                </>
+              )}
+            </button>
           </div>
         )}
       </nav>
