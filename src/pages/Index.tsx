@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { 
@@ -58,7 +57,7 @@ interface ProfileData {
   };
 }
 
-const fetchData = async <T>(url: string): Promise<T> => {
+const fetchData = async <T,>(url: string): Promise<T> => {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Network response was not ok: ${response.status}`);
