@@ -6,7 +6,7 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['summary', 'experience', 'blog'];
+      const sections = ['summary', 'experience', 'about', 'blog'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -36,8 +36,9 @@ const Navigation: React.FC = () => {
     <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
       <div className="flex space-x-8">
         {[
-          { id: 'summary', label: 'About' },
+          { id: 'summary', label: 'Home' },
           { id: 'experience', label: 'Experience' },
+          { id: 'about', label: 'About Me' },
           { id: 'blog', label: 'Blog' }
         ].map(({ id, label }) => (
           <button
