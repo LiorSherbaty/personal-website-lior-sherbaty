@@ -33,6 +33,31 @@ interface Blog {
   link: string;
 }
 
+interface ProfileData {
+  bio: {
+    name: string;
+    title: string;
+    description: string;
+    avatar: string;
+    location: string;
+    email: string;
+    linkedin: string;
+    github: string;
+    skills: string[];
+  };
+  personalInfo: {
+    philosophy: string;
+    hobbies: string[];
+    interests: string[];
+    funFacts: string[];
+    photos: Array<{
+      url: string;
+      caption: string;
+      alt: string;
+    }>;
+  };
+}
+
 const fetchData = async <T>(url: string): Promise<T> => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -55,6 +80,14 @@ const Index: React.FC = () => {
     '/images/profile2.webp',
     '/images/profile3.webp',
   ];
+
+  // Load profile data
+  const { data: profileData, isLoading: profileLoading, error: profileError } = useQuery({
+    queryKey: ['profile'],
+    queryFn: () => fetchData<ProfileData>('/data/profile.json'),
+    refetchOnWindowFocus: false,
+    retry: 3,
+  });
 
   useEffect(() => {
     const loadBlogs = async () => {
@@ -162,11 +195,21 @@ const Index: React.FC = () => {
                 A passionate software engineer dedicated to crafting efficient and user-friendly solutions.
                 Explore my portfolio to see how I can bring value to your projects.
               </p>
-              <PersonalInfo>
-                <MapPin>Philippines</MapPin>
-                <Mail>leovergarajr@gmail.com</Mail>
-                <Phone>+63 927 827 4122</Phone>
-              </PersonalInfo>
+              {/* Contact Info */}
+              <div className="flex flex-col space-y-2 mb-6">
+                <div className="flex items-center text-gray-700 dark:text-gray-300">
+                  <MapPin className="w-5 h-5 mr-2" />
+                  <span>Philippines</span>
+                </div>
+                <div className="flex items-center text-gray-700 dark:text-gray-300">
+                  <Mail className="w-5 h-5 mr-2" />
+                  <span>leovergarajr@gmail.com</span>
+                </div>
+                <div className="flex items-center text-gray-700 dark:text-gray-300">
+                  <Phone className="w-5 h-5 mr-2" />
+                  <span>+63 927 827 4122</span>
+                </div>
+              </div>
               <div className="mt-6">
                 <a href="/files/Leo-Vergara-Resume.pdf" target="_blank" className="inline-flex items-center px-6 py-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 shadow-md transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-blue-500">
                   Download Resume
@@ -231,7 +274,7 @@ const Index: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             About Me
           </h2>
-          <div className="lg:flex items-start">
+          <div className="lg:flex items-start mb-12">
             <div className="lg:w-1/3 mb-6 lg:mb-0">
               <img
                 src="/images/about-me.webp"
@@ -255,6 +298,21 @@ const Index: React.FC = () => {
               </p>
             </div>
           </div>
+          
+          {/* Personal Info Section */}
+          {profileLoading && (
+            <div className="text-center text-gray-600 dark:text-gray-400">
+              Loading personal information...
+            </div>
+          )}
+          {profileError && (
+            <div className="text-center text-red-500">
+              Error loading personal information.
+            </div>
+          )}
+          {profileData && profileData.personalInfo && (
+            <PersonalInfo personalInfo={profileData.personalInfo} />
+          )}
         </div>
       </section>
 
