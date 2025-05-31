@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface BlogPost {
   id: number;
@@ -66,12 +67,15 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
           ))}
         </div>
 
-        <button className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200 flex items-center group/btn">
+        <Link 
+          to={`/blog/${post.id}`}
+          className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200 flex items-center group/btn"
+        >
           Read more
           <svg className="w-4 h-4 ml-2 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </button>
+        </Link>
       </div>
     </article>
   );
