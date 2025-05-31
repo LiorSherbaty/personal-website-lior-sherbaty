@@ -23,6 +23,11 @@ interface BlogPost {
   readTime: string;
   tags: string[];
   image: string;
+  images?: Array<{
+    url: string;
+    caption?: string;
+    alt: string;
+  }>;
 }
 
 interface BlogData {
@@ -56,6 +61,69 @@ const BlogPostContent: React.FC = () => {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
+    });
+  };
+
+  const renderContent = (content: string, images?: Array<{url: string; caption?: string; alt: string}>) => {
+    const sections = content.split('\n\n');
+    const imageMap = images ? Object.fromEntries(images.map((img, idx) => [`[IMAGE_${idx}]`, img])) : {};
+    
+    return sections.map((section, index) => {
+      // Check if this section is an image placeholder
+      if (section.startsWith('[IMAGE_') && section.endsWith(']')) {
+        const imageData = imageMap[section];
+        if (imageData) {
+          return (
+            <div key={index} className="my-8">
+              <img
+                src={imageData.url}
+                alt={imageData.alt}
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
+              {imageData.caption && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-3 italic">
+                  {imageData.caption}
+                </p>
+              )}
+            </div>
+          );
+        }
+      }
+      
+      // Check if this section is a heading
+      if (section.startsWith('#')) {
+        const level = section.match(/^#+/)?.[0].length || 1;
+        const text = section.replace(/^#+\s/, '');
+        const HeadingTag = `h${Math.min(level + 1, 6)}` as keyof JSX.IntrinsicElements;
+        
+        return (
+          <HeadingTag
+            key={index}
+            className={`font-bold text-gray-900 dark:text-white mb-4 mt-8 ${
+              level === 1 ? 'text-3xl' : level === 2 ? 'text-2xl' : 'text-xl'
+            }`}
+          >
+            {text}
+          </HeadingTag>
+        );
+      }
+      
+      // Check if this section is a code block
+      if (section.startsWith('```') && section.endsWith('```')) {
+        const code = section.slice(3, -3).trim();
+        return (
+          <pre key={index} className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto my-6">
+            <code className="text-sm text-gray-800 dark:text-gray-200">{code}</code>
+          </pre>
+        );
+      }
+      
+      // Regular paragraph
+      return (
+        <p key={index} className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-lg">
+          {section}
+        </p>
+      );
     });
   };
 
@@ -97,7 +165,7 @@ const BlogPostContent: React.FC = () => {
       <ThemeToggle />
       <Navigation />
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         {/* Breadcrumb Navigation */}
         <div className="mb-8">
           <Breadcrumb>
@@ -139,32 +207,33 @@ const BlogPostContent: React.FC = () => {
         </div>
 
         {/* Blog Post Header */}
-        <header className="mb-8">
+        <header className="mb-12">
           <div className="relative overflow-hidden rounded-2xl mb-8">
             <img
               src={post.image}
               alt={post.title}
-              className="w-full h-64 md:h-80 object-cover"
+              className="w-full h-80 md:h-96 object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <div className="flex items-center justify-between text-white/90 text-sm mb-4">
+                <time dateTime={post.date} className="bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                  {formatDate(post.date)}
+                </time>
+                <span className="bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm">{post.readTime}</span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-4">
-            <time dateTime={post.date}>
-              {formatDate(post.date)}
-            </time>
-            <span>{post.readTime}</span>
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-3 mb-8">
             {post.tags.map((tag, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-full"
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-600"
               >
                 #{tag}
               </span>
@@ -173,20 +242,19 @@ const BlogPostContent: React.FC = () => {
         </header>
 
         {/* Blog Post Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 dark:border-gray-700">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div 
-              className="text-gray-700 dark:text-gray-300 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br><br>') }}
-            />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div className="p-8 md:p-12">
+            <div className="prose prose-xl dark:prose-invert max-w-none">
+              {renderContent(post.content, post.images)}
+            </div>
           </div>
         </div>
 
         {/* Navigation Footer */}
-        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
           <Link
             to="/"
-            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to Portfolio
