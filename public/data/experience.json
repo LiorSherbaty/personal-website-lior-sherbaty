@@ -1,0 +1,50 @@
+
+{
+  "experience": [
+    {
+      "id": 1,
+      "company": "TechCorp Inc.",
+      "position": "Senior Full-Stack Developer",
+      "location": "San Francisco, CA",
+      "duration": "Jan 2022 - Present",
+      "logo": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop",
+      "description": "Lead development of microservices architecture serving 1M+ users daily. Built and maintained React applications with TypeScript, implemented CI/CD pipelines, and mentored junior developers.",
+      "achievements": [
+        "Improved application performance by 40% through code optimization",
+        "Led migration from monolith to microservices architecture",
+        "Mentored 3 junior developers and conducted code reviews"
+      ],
+      "technologies": ["React", "TypeScript", "Node.js", "AWS", "Docker", "PostgreSQL"]
+    },
+    {
+      "id": 2,
+      "company": "StartupXYZ",
+      "position": "Full-Stack Developer",
+      "location": "Remote",
+      "duration": "Mar 2020 - Dec 2021",
+      "logo": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=100&h=100&fit=crop",
+      "description": "Developed MVP for fintech startup from ground up. Built responsive web applications and RESTful APIs, integrated third-party payment systems, and implemented real-time data synchronization.",
+      "achievements": [
+        "Built MVP that secured $2M in Series A funding",
+        "Implemented real-time trading dashboard with WebSocket",
+        "Reduced API response time by 60% through optimization"
+      ],
+      "technologies": ["React", "Python", "Django", "Redis", "WebSocket", "Stripe API"]
+    },
+    {
+      "id": 3,
+      "company": "WebDev Agency",
+      "position": "Frontend Developer",
+      "location": "New York, NY",
+      "duration": "Jun 2019 - Feb 2020",
+      "logo": "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=100&h=100&fit=crop",
+      "description": "Created responsive websites and web applications for various clients. Collaborated with designers to implement pixel-perfect UI/UX designs and optimized websites for SEO and performance.",
+      "achievements": [
+        "Delivered 15+ client projects on time and within budget",
+        "Improved client website loading speed by average 50%",
+        "Implemented accessibility standards (WCAG 2.1 AA)"
+      ],
+      "technologies": ["React", "JavaScript", "Sass", "WordPress", "SEO", "Accessibility"]
+    }
+  ]
+}

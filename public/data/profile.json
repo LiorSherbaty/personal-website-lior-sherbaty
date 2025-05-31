@@ -1,0 +1,14 @@
+
+{
+  "bio": {
+    "name": "Alex Johnson",
+    "title": "Full-Stack Software Developer",
+    "description": "Passionate software developer with 5+ years of experience building scalable web applications. I specialize in React, Node.js, and cloud technologies, with a strong focus on creating exceptional user experiences and robust backend systems.",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    "location": "San Francisco, CA",
+    "email": "alex.johnson@example.com",
+    "linkedin": "https://linkedin.com/in/alexjohnson",
+    "github": "https://github.com/alexjohnson",
+    "skills": ["React", "TypeScript", "Node.js", "Python", "AWS", "Docker", "GraphQL", "PostgreSQL"]
+  }
+}

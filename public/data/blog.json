@@ -1,0 +1,59 @@
+
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Building Scalable React Applications with TypeScript",
+      "excerpt": "Learn best practices for structuring large React applications with TypeScript, including component architecture, state management, and testing strategies.",
+      "date": "2024-01-15",
+      "readTime": "8 min read",
+      "tags": ["React", "TypeScript", "Architecture", "Best Practices"],
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=300&fit=crop"
+    },
+    {
+      "id": 2,
+      "title": "Optimizing Web Performance: A Developer's Guide",
+      "excerpt": "Comprehensive guide to web performance optimization covering Core Web Vitals, image optimization, code splitting, and modern loading strategies.",
+      "date": "2024-01-08",
+      "readTime": "12 min read",
+      "tags": ["Performance", "Web Vitals", "Optimization", "JavaScript"],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop"
+    },
+    {
+      "id": 3,
+      "title": "Microservices with Node.js and Docker",
+      "excerpt": "Step-by-step guide to building and deploying microservices using Node.js, Express, Docker, and container orchestration with Kubernetes.",
+      "date": "2023-12-22",
+      "readTime": "15 min read",
+      "tags": ["Node.js", "Docker", "Microservices", "DevOps", "Kubernetes"],
+      "image": "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&h=300&fit=crop"
+    },
+    {
+      "id": 4,
+      "title": "CSS Grid vs Flexbox: When to Use Which",
+      "excerpt": "Detailed comparison of CSS Grid and Flexbox layout systems with practical examples and use cases for modern web development.",
+      "date": "2023-12-10",
+      "readTime": "6 min read",
+      "tags": ["CSS", "Grid", "Flexbox", "Layout", "Frontend"],
+      "image": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=600&h=300&fit=crop"
+    },
+    {
+      "id": 5,
+      "title": "State Management in React: Redux vs Zustand",
+      "excerpt": "Compare different state management solutions for React applications, exploring Redux, Zustand, and Context API with real-world examples.",
+      "date": "2023-11-28",
+      "readTime": "10 min read",
+      "tags": ["React", "Redux", "Zustand", "State Management", "JavaScript"],
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=300&fit=crop"
+    },
+    {
+      "id": 6,
+      "title": "GraphQL Best Practices for Production",
+      "excerpt": "Essential patterns and practices for implementing GraphQL in production environments, including schema design, caching, and security considerations.",
+      "date": "2023-11-15",
+      "readTime": "14 min read",
+      "tags": ["GraphQL", "API", "Backend", "Best Practices", "Security"],
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=300&fit=crop"
+    }
+  ]
+}
