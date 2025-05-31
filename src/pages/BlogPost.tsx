@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Download } from 'lucide-react';
 import { ThemeProvider } from '../contexts/ThemeContext';
+import ThemeToggle from '../components/ThemeToggle';
 import Navigation from '../components/Navigation';
 import {
   Breadcrumb,
@@ -139,6 +141,7 @@ const BlogPostContent: React.FC = () => {
   if (!post) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+        <ThemeToggle />
         <Navigation />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
           <div className="text-center">
@@ -159,6 +162,7 @@ const BlogPostContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+      <ThemeToggle />
       <Navigation />
 
       <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
