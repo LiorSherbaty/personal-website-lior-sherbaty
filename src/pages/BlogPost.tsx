@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Download } from 'lucide-react';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import ThemeToggle from '../components/ThemeToggle';
 import Navigation from '../components/Navigation';
 import {
   Breadcrumb,

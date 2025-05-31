@@ -26,10 +26,14 @@ interface GitHubRepo {
 }
 
 interface Blog {
+  id: number;
   title: string;
+  excerpt: string;
   content: string;
   date: string;
-  link: string;
+  readTime: string;
+  tags: string[];
+  image: string;
 }
 
 interface ProfileData {
@@ -88,19 +92,46 @@ const Index: React.FC = () => {
     retry: 3,
   });
 
-  useEffect(() => {
-    const loadBlogs = async () => {
-      try {
-        const blogData = await fetchData<Blog[]>('/data/blogs.json');
-        setBlogs(blogData);
-        setFilteredBlogs(blogData);
-      } catch (error) {
-        console.error("Failed to load blogs:", error);
-      }
-    };
+  // Load experience data
+  const { data: experienceData } = useQuery({
+    queryKey: ['experience'],
+    queryFn: () => fetchData<{experience: Array<{
+      id: number;
+      company: string;
+      position: string;
+      location: string;
+      duration: string;
+      logo: string;
+      description: string;
+      achievements: string[];
+      technologies: string[];
+    }>}>('/data/experience.json'),
+    refetchOnWindowFocus: false,
+    retry: 3,
+  });
 
-    loadBlogs();
-  }, []);
+  // Load blog data
+  const { data: blogData } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => fetchData<{posts: Blog[]}>('/data/blog.json'),
+    refetchOnWindowFocus: false,
+    retry: 3,
+  });
+
+  useEffect(() => {
+    if (blogData?.posts) {
+      setBlogs(blogData.posts);
+      setFilteredBlogs(blogData.posts);
+    }
+  }, [blogData]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [images.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -155,7 +186,7 @@ const Index: React.FC = () => {
     if (query) {
       const results = blogs.filter(blog =>
         blog.title.toLowerCase().includes(query.toLowerCase()) ||
-        blog.content.toLowerCase().includes(query.toLowerCase())
+        blog.excerpt.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredBlogs(results);
     } else {
@@ -242,27 +273,13 @@ const Index: React.FC = () => {
             Experience
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ExperienceCard
-              title="Software Engineer"
-              company="Paymongo"
-              date="2021 - Present"
-              description="Developed and maintained key features for a fast-growing online payments platform, focusing on scalability and security."
-              skills={['React', 'TypeScript', 'Node.js', 'PostgreSQL']}
-            />
-            <ExperienceCard
-              title="Software Engineer"
-              company="MSkyNet System Solutions Inc."
-              date="2019 - 2021"
-              description="Worked on various projects including web and mobile applications, contributing to both front-end and back-end development."
-              skills={['Angular', 'Java', 'Spring Boot', 'MySQL']}
-            />
-            <ExperienceCard
-              title="Software Engineer Intern"
-              company="Technological Institute of the Philippines"
-              date="2018"
-              description="Assisted in the development of a school management system, gaining experience in full-stack development."
-              skills={['PHP', 'Laravel', 'JavaScript', 'HTML', 'CSS']}
-            />
+            {experienceData?.experience?.map((experience, index) => (
+              <ExperienceCard
+                key={experience.id}
+                experience={experience}
+                index={index}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -332,8 +349,8 @@ const Index: React.FC = () => {
             <Search className="ml-3 w-6 h-6 text-gray-600 dark:text-gray-400" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredBlogs.map((blog, index) => (
-              <BlogCard key={index} blog={blog} openModal={openModal} />
+            {filteredBlogs.map((post, index) => (
+              <BlogCard key={post.id} post={post} index={index} />
             ))}
           </div>
         </div>
