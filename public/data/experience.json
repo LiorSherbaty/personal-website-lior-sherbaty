@@ -3,48 +3,41 @@
   "experience": [
     {
       "id": 1,
-      "company": "TechCorp Inc.",
-      "position": "Senior Full-Stack Developer",
-      "location": "San Francisco, CA",
-      "duration": "Jan 2022 - Present",
-      "logo": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop",
-      "description": "Lead development of microservices architecture serving 1M+ users daily. Built and maintained React applications with TypeScript, implemented CI/CD pipelines, and mentored junior developers.",
+      "company": "mPrest",
+      "position": "Backend Developer",
+      "location": "Petach Tikva, Israel",
+      "duration": "Jun 2024 - Present",
+      "logo": "\\data\\Pictures\\Logo's\\mprest.jfif",
+      "description": "Worked on a classified defense technology project as part of a multidisciplinary team. Focused on building robust, high-performance backend systems using .NET technologies. Responsible for designing scalable APIs, optimizing system reliability, and ensuring secure data handling in mission-critical environments. Collaborated closely with frontend developers, QA engineers, and system architects to deliver features on tight deadlines while adhering to strict security protocols.",
       "achievements": [
-        "Improved application performance by 40% through code optimization",
-        "Led migration from monolith to microservices architecture",
-        "Mentored 3 junior developers and conducted code reviews"
       ],
-      "technologies": ["React", "TypeScript", "Node.js", "AWS", "Docker", "PostgreSQL"]
+      "technologies": ["Microservices", "TypeScript", "Node.js", "AWS", "Docker", "PostgreSQL"]
     },
     {
       "id": 2,
-      "company": "StartupXYZ",
-      "position": "Full-Stack Developer",
-      "location": "Remote",
-      "duration": "Mar 2020 - Dec 2021",
-      "logo": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=100&h=100&fit=crop",
-      "description": "Developed MVP for fintech startup from ground up. Built responsive web applications and RESTful APIs, integrated third-party payment systems, and implemented real-time data synchronization.",
+      "company": "Philips Medical Systems",
+      "position": "Software Developer",
+      "location": "Haifa, Israel",
+      "duration": "Jan 2021 - May 2024",
+      "logo": "\\data\\Pictures\\Logo's\\philips_logo.jfif",
+      "description": "Led backend and full-stack development in medical imaging, modernizing monolithic systems into scalable web architectures. Owned core radiologist-facing apps, refactored legacy code, and led a POC that scaled data handling 20×. Also rebuilt a DICOM anonymization tool from a complex Python script into a clean, maintainable Angular + .NET solution.",
       "achievements": [
-        "Built MVP that secured $2M in Series A funding",
-        "Implemented real-time trading dashboard with WebSocket",
-        "Reduced API response time by 60% through optimization"
+        "Application Owner - Knowledge focal point, design, and code owner, and team representative in product discussions",
+        "Hackaton Team Lead -  SW developers, QA, and DevOps which developed a POC handles a data size of 20X more than it is currently capable of."
       ],
-      "technologies": ["React", "Python", "Django", "Redis", "WebSocket", "Stripe API"]
+      "technologies": ["Angular", ".NET 6", "C#", "TypeScript", "DICOM", ".Net Framework", "WPF", "Agile"]
     },
     {
       "id": 3,
-      "company": "WebDev Agency",
-      "position": "Frontend Developer",
-      "location": "New York, NY",
-      "duration": "Jun 2019 - Feb 2020",
-      "logo": "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=100&h=100&fit=crop",
-      "description": "Created responsive websites and web applications for various clients. Collaborated with designers to implement pixel-perfect UI/UX designs and optimized websites for SEO and performance.",
+      "company": "Philips Medical Systems",
+      "position": "Student Software Automation Developer",
+      "location": "Haifa, Israel",
+      "duration": "Sep 2018 - Dec 2020",
+      "logo": "\\data\\Pictures\\Logo's\\philips_logo.jfif",
+      "description": " Built and improved automation infrastructure and test suites for medical software. Worked with C#, Ranorex, and TestComplete using the Page Object pattern to ensure robust and maintainable UI tests.",
       "achievements": [
-        "Delivered 15+ client projects on time and within budget",
-        "Improved client website loading speed by average 50%",
-        "Implemented accessibility standards (WCAG 2.1 AA)"
       ],
-      "technologies": ["React", "JavaScript", "Sass", "WordPress", "SEO", "Accessibility"]
+      "technologies": [" C#", "TestComplete", "Ranorex", "PageObject"]
     }
   ]
 }

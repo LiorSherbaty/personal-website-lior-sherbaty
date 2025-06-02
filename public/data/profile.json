@@ -2,41 +2,50 @@
 {
   "bio": {
     "name": "Lior Sherbaty",
-    "title": "Full-Stack Software Developer",
-    "description": "Passionate software developer with 5+ years of experience building scalable web applications. I specialize in React, Node.js, and cloud technologies, with a strong focus on creating exceptional user experiences and robust backend systems.",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-    "location": "San Francisco, CA",
-    "email": "alex.johnson@example.com",
-    "linkedin": "https://linkedin.com/in/alexjohnson",
-    "github": "https://github.com/alexjohnson",
-    "skills": ["React", "TypeScript", "Node.js", "Python", "AWS", "Docker", "GraphQL", "PostgreSQL"]
+    "title": ".NET developer",
+    "description": "I'm an expert .NET developer specializing in transforming complex legacy systems into high-performance, reliable applications. At Philips Medical Systems and now at mPrest, I've delivered measurable improvements in performance, scalability, and security across mission-critical projects.I combine deep technical expertise with a pragmatic mindset, bringing clarity to complex challenges and driving clean, maintainable solutions. Whether leading initiatives or collaborating across teams, I aim to keep things efficient, thoughtful and occasionally funny. I believe great code should not only work well, but make life easier for the people who build and use it.",
+    "avatar": "\\data\\Pictures\\FirstPage\\Face.jfif",
+    "location": "Haifa, Israel",
+    "email": "lior.sherbaty@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/lior-sherbaty/",
+    "github": "",
+    "skills": [".NET", "Microservices", "Back-End Development", "Agile Methodologies", "C#", "WPF", "MongoDB", "RabbitMQ"]
   },
   "personalInfo": {
-    "philosophy": "I believe in continuous learning, building meaningful connections, and using technology to solve real-world problems. Life is about balance - pursuing excellence in work while cherishing moments with family and friends.",
-    "hobbies": ["Photography", "Hiking", "Cooking", "Reading", "Gaming", "Traveling"],
-    "interests": ["Artificial Intelligence", "Sustainable Technology", "Open Source", "Mentoring", "Music Production"],
+    "philosophy": "Outside the code editor, I'm fueled by humor, family adventures, and the quest for the perfect coffee blend. My home life involves balancing fatherhood, marital teamwork, and placating two highly opinionated cats who occasionally approve my pull requests. My guiding principles - simplicity, efficiency, and clarity, drive my software development style as well as my personal philosophy.",
+    "hobbies": ["Football", "Hiking", "Cooking", "Reading", "Gaming", "Traveling"],
+    "interests": ["Artificial Intelligence", "Sustainable Technology", "Mentoring"],
     "funFacts": [
+      "Family Status: Married, father of one adventurous son",
+      "Cats Owned: 2 feline \"code reviewers\"",
       "I've visited 15 countries and counting",
-      "I can solve a Rubik's cube in under 2 minutes",
-      "I've contributed to 5 major open-source projects",
-      "I speak 3 languages fluently",
-      "I've run 3 marathons"
+      "I speak 3 languages fluently"
     ],
     "photos": [
       {
-        "url": "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=600&h=400&fit=crop",
-        "caption": "Quality time with family at home",
-        "alt": "Cozy family living room"
+        "url": "\\data\\Pictures\\Family\\FirstHackaton.jpg",
+        "caption": "First Hackaton Team Lead",
+        "alt": "Hackaton"
       },
       {
-        "url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=400&fit=crop",
-        "caption": "Working on side projects and learning new technologies",
-        "alt": "Woman working on laptop"
+        "url": "\\data\\Pictures\\Family\\LiorCombatMedic.jpg",
+        "caption": "Serving As Combat Medic",
+        "alt": "Army"
       },
       {
-        "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&h=400&fit=crop",
-        "caption": "Finding inspiration in nature during weekend hikes",
-        "alt": "Beautiful nature scenery with water and trees"
+        "url": "\\data\\Pictures\\Family\\LiorSouthAmerica.jpg",
+        "caption": "Traveling In South America",
+        "alt": "Travel"
+      },
+      {
+        "url": "\\data\\Pictures\\Family\\LiorHadarWedding.jpg",
+        "caption": "Wedding",
+        "alt": "Family"
+      },
+      {
+        "url": "\\data\\Pictures\\Family\\LiorAndLucaAndDog.jpg",
+        "caption": "Son",
+        "alt": "Family"
       }
     ]
   }

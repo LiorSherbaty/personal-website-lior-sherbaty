@@ -87,7 +87,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ personalInfo }) => {
             <img
               src={personalInfo.photos[currentPhotoIndex].url}
               alt={personalInfo.photos[currentPhotoIndex].alt}
-              className="w-full h-64 md:h-96 object-cover transition-all duration-500 transform hover:scale-105"
+              className="w-full h-64 md:h-96 object-cover transition-all duration-1500 transform hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
