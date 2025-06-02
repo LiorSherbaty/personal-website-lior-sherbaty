@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Mail, MapPin, ArrowUp } from 'lucide-react';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import ThemeToggle from '../components/ThemeToggle';
 import Navigation from '../components/Navigation';
 import ExperienceCard from '../components/ExperienceCard';
 import BlogCard from '../components/BlogCard';
@@ -253,12 +252,12 @@ const PortfolioContent: React.FC = () => {
                 <div className="space-y-4 md:space-y-6">
                   <div className="grid grid-cols-2 gap-3 md:gap-4">
                     <div className="text-center p-3 md:p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                      <div className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400">5+</div>
+                      <div className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400">8+</div>
                       <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
                     </div>
                     <div className="text-center p-3 md:p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
-                      <div className="text-xl md:text-2xl font-bold text-green-600 dark:text-green-400">50+</div>
-                      <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+                      <div className="text-xl md:text-2xl font-bold text-green-600 dark:text-green-400">5+</div>
+                      <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Major Professional Projects Contributaions</div>
                     </div>
                   </div>
                   
@@ -366,7 +365,7 @@ const PortfolioContent: React.FC = () => {
       <footer className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700 py-8 md:py-12 relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-600 dark:text-gray-400">
-            © 2024 {profileData.bio.name}. Built with React and Tailwind CSS.
+            © 2025 {profileData.bio.name}. Built with React and Tailwind CSS.
           </p>
         </div>
       </footer>
