@@ -49,18 +49,6 @@ interface ExperienceData {
   }>;
 }
 
-interface BlogData {
-  posts: Array<{
-    id: number;
-    title: string;
-    excerpt: string;
-    date: string;
-    readTime: string;
-    tags: string[];
-    image: string;
-  }>;
-}
-
 const PortfolioContent: React.FC = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [experienceData, setExperienceData] = useState<ExperienceData | null>(null);
