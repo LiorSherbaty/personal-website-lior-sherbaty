@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Download } from 'lucide-react';
@@ -13,7 +14,7 @@ import {
   BreadcrumbPage,
 } from '../components/ui/breadcrumb';
 import { blogData } from '../data/blogData';
-import { BlogPost } from '../types/blog';
+import type { BlogPost } from '../types/blog';
 
 const BlogPostContent: React.FC = () => {
   const { id } = useParams<{ id: string }>();
