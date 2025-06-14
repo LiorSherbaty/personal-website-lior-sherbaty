@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Download } from 'lucide-react';
@@ -13,26 +12,8 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
 } from '../components/ui/breadcrumb';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  image: string;
-  images?: Array<{
-    url: string;
-    caption?: string;
-    alt: string;
-  }>;
-}
-
-interface BlogData {
-  posts: BlogPost[];
-}
+import { blogData } from '../data/blogData';
+import { BlogPost } from '../types/blog';
 
 const BlogPostContent: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,17 +21,10 @@ const BlogPostContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPost = async () => {
-      try {
-        const response = await fetch('/data/blog.json');
-        const data: BlogData = await response.json();
-        const foundPost = data.posts.find(p => p.id === parseInt(id || '0'));
-        setPost(foundPost || null);
-      } catch (error) {
-        console.error('Error loading blog post:', error);
-      } finally {
-        setLoading(false);
-      }
+    const loadPost = () => {
+      const foundPost = blogData.posts.find(p => p.id === parseInt(id || '0'));
+      setPost(foundPost || null);
+      setLoading(false);
     };
 
     loadPost();
@@ -198,11 +172,11 @@ const BlogPostContent: React.FC = () => {
         {/* Back Button */}
         <div className="mb-8">
           <Link
-            to="/"
+            to="/#blog"
             className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200 group"
           >
             <ArrowLeft className="w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-x-1" />
-            Back to Portfolio
+            Back to Blog
           </Link>
         </div>
 
@@ -253,11 +227,11 @@ const BlogPostContent: React.FC = () => {
         {/* Navigation Footer */}
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
           <Link
-            to="/"
+            to="/#blog"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Portfolio
+            Back to Blog
           </Link>
         </div>
       </article>
