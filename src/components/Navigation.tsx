@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -7,7 +8,7 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['summary', 'experience', 'projects', 'about', 'contact', 'blog'];
+      const sections = ['summary', 'experience', 'projects', 'about', 'blog'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -38,7 +39,6 @@ const Navigation: React.FC = () => {
     { id: 'experience', label: 'Work' },
     { id: 'projects', label: 'Projects' },
     { id: 'about', label: 'About' },
-    { id: 'contact', label: 'Contact' },
     { id: 'blog', label: 'Blog' }
   ];
 
@@ -85,9 +85,9 @@ const Navigation: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Navigation - 7 Button Layout */}
+      {/* Mobile Navigation - 6 Button Layout */}
       <nav className="md:hidden fixed top-4 left-4 right-4 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-        <div className="grid grid-cols-7 gap-1 px-1 py-2">
+        <div className="grid grid-cols-6 gap-1 px-1 py-2">
           {navigationItems.map(({ id, label }) => (
             <button
               key={id}
