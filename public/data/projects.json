@@ -1,0 +1,37 @@
+
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Medical Imaging Platform Modernization",
+      "description": "Led the modernization of a legacy monolithic medical imaging system into a scalable microservices architecture. Transformed radiologist workflows and improved system performance by 300%. Built with Angular frontend and .NET Core backend.",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=300&fit=crop",
+      "technologies": ["Angular", ".NET Core", "C#", "DICOM", "TypeScript", "Azure", "Microservices"],
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "DICOM Anonymization Tool",
+      "description": "Rebuilt a complex Python-based DICOM anonymization script into a clean, maintainable Angular + .NET solution. Improved processing speed by 150% and reduced maintenance overhead significantly.",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=300&fit=crop",
+      "technologies": ["Angular", ".NET Framework", "C#", "DICOM", "WPF", "Medical Imaging"],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Defense Technology Backend System",
+      "description": "Developed robust, high-performance backend systems for classified defense technology projects. Focused on scalability, security, and reliability in mission-critical environments with strict security protocols.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=300&fit=crop",
+      "technologies": [".NET", "Microservices", "TypeScript", "Node.js", "AWS", "Docker", "PostgreSQL"],
+      "featured": true
+    },
+    {
+      "id": 4,
+      "title": "Test Automation Infrastructure",
+      "description": "Built and improved automation infrastructure and test suites for medical software using C#, Ranorex, and TestComplete. Implemented Page Object pattern for maintainable UI tests and reduced testing overhead.",
+      "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=300&fit=crop",
+      "technologies": ["C#", "TestComplete", "Ranorex", "Page Object", "Test Automation"],
+      "featured": false
+    }
+  ]
+}

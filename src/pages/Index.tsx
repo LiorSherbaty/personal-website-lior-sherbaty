@@ -1,12 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { Download, Mail, MapPin, ArrowUp } from 'lucide-react';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import Navigation from '../components/Navigation';
 import ExperienceCard from '../components/ExperienceCard';
+import ProjectCard from '../components/ProjectCard';
 import BlogCard from '../components/BlogCard';
 import BlogSearch from '../components/BlogSearch';
 import PersonalInfo from '../components/PersonalInfo';
+import ContactForm from '../components/ContactForm';
 
 interface ProfileData {
   bio: {
@@ -63,6 +64,7 @@ const PortfolioContent: React.FC = () => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [experienceData, setExperienceData] = useState<ExperienceData | null>(null);
   const [blogData, setBlogData] = useState<BlogData | null>(null);
+  const [projectsData, setProjectsData] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -70,21 +72,24 @@ const PortfolioContent: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [profileRes, experienceRes, blogRes] = await Promise.all([
+        const [profileRes, experienceRes, blogRes, projectsRes] = await Promise.all([
           fetch('/data/profile.json'),
           fetch('/data/experience.json'),
-          fetch('/data/blog.json')
+          fetch('/data/blog.json'),
+          fetch('/data/projects.json')
         ]);
 
-        const [profile, experience, blog] = await Promise.all([
+        const [profile, experience, blog, projects] = await Promise.all([
           profileRes.json(),
           experienceRes.json(),
-          blogRes.json()
+          blogRes.json(),
+          projectsRes.json()
         ]);
 
         setProfileData(profile);
         setExperienceData(experience);
         setBlogData(blog);
+        setProjectsData(projects);
       } catch (error) {
         console.error('Error loading data:', error);
       }
@@ -140,7 +145,7 @@ const PortfolioContent: React.FC = () => {
     );
   };
 
-  if (!profileData || !experienceData || !blogData) {
+  if (!profileData || !experienceData || !blogData || !projectsData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center">
@@ -294,6 +299,26 @@ const PortfolioContent: React.FC = () => {
         </div>
       </section>
 
+      {/* Projects Section - NEW */}
+      <section id="projects" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Featured Projects
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400">
+              Showcasing key projects and technical achievements
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {projectsData.projects.map((project: any, index: number) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Me Section */}
       <section id="about" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -309,6 +334,87 @@ const PortfolioContent: React.FC = () => {
           {profileData.personalInfo && (
             <PersonalInfo personalInfo={profileData.personalInfo} />
           )}
+        </div>
+      </section>
+
+      {/* Contact Section - NEW */}
+      <section id="contact" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Get In Touch
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400">
+              Let's discuss your next project or explore opportunities to work together
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="space-y-6">
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200/50 dark:border-gray-700/50">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                  Professional Contact
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">Email</h4>
+                      <a 
+                        href={`mailto:${profileData.bio.email}`}
+                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        {profileData.bio.email}
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">LinkedIn</h4>
+                      <a 
+                        href={profileData.bio.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        Professional Profile
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">Location</h4>
+                      <p className="text-gray-600 dark:text-gray-400">{profileData.bio.location}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                  <p className="text-sm text-blue-800 dark:text-blue-300">
+                    <strong>Open to:</strong> Senior .NET Developer roles, Technical Leadership positions, 
+                    and interesting projects in medical technology or defense systems.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <ContactForm />
+            </div>
+          </div>
         </div>
       </section>
 
